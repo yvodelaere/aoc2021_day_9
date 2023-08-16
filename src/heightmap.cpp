@@ -28,10 +28,10 @@ std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
       // Check if any direction has a lower value
       uint8_t curValue = aHeightMap[i][j];
       bool isLow = true;
-      if (j > 0 && aHeightMap[i][j - 1] < curValue) { isLow = false;  } // Left
-      if (isLow && i > 0 && aHeightMap[i - 1][j] < curValue) { isLow = false; } // Up
-      if (isLow && j < width - 1 && aHeightMap[i][j + 1] < curValue) { isLow = false; } // Right
-      if (isLow && i < height - 1 && aHeightMap[i + 1][j] < curValue) { isLow = false; } // Down
+      if (j > 0 && aHeightMap[i][j - 1] <= curValue) { isLow = false;  } // Left
+      if (isLow && i > 0 && aHeightMap[i - 1][j] <= curValue) { isLow = false; } // Up
+      if (isLow && j < width - 1 && aHeightMap[i][j + 1] <= curValue) { isLow = false; } // Right
+      if (isLow && i < height - 1 && aHeightMap[i + 1][j] <= curValue) { isLow = false; } // Down
       if (isLow)
       {
         lowPoints.push_back(curValue);
