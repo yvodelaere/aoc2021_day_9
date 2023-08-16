@@ -50,6 +50,19 @@ bool riskLevelTest(HeightMap aHeightMap)
   return result;
 }
 
+bool equalValueTest()
+{
+  std::stringstream sampleMapInput("99999\n99999\n99999\n99999\n99999\n");
+  HeightMap heightMap = readHeightMap(sampleMapInput);
+  bool result = true;
+  result &= computeRiskLevel(heightMap) == 0;
+  if (!result)
+  {
+    std::cout << "TEST: " << __FUNCTION__ << " failed" << std::endl;
+  }
+  return result;
+}
+
 int main(void) {
   std::stringstream sampleMapInput("2199943210\n3987894921\n9856789892\n8767896789\n9899965678\n");
   HeightMap heightMap = readHeightMap(sampleMapInput);
@@ -60,5 +73,6 @@ int main(void) {
   if (result) { result &= entryTest(heightMap); }
   if (result) { result &= lowPointsTest(heightMap); }
   if (result) { result &= riskLevelTest(heightMap); }
+  if (result) { result &= equalValueTest(); }
   return !result;
 }
