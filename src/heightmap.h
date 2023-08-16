@@ -14,3 +14,6 @@ std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap);
 
 /** Compute the risk level of a given heightmap */
 int computeRiskLevel(HeightMap &aHeightMap);
+
+/** Check if point is a low point */
+bool isLowPoint(HeightMap& aHeightMap, size_t aRow, size_t aCol);

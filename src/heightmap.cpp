@@ -18,6 +18,19 @@ HeightMap readHeightMap(std::istream &aFileStream)
   return heightMap;
 }
 
+bool isLowPoint(HeightMap& aHeightMap, size_t aRow, size_t aCol)
+{
+  bool isLow = true;
+  uint8_t curValue = aHeightMap[aRow][aCol];
+  size_t width = aHeightMap[0].size();
+  size_t height = aHeightMap.size();
+  if (aCol > 0 && aHeightMap[aRow][aCol - 1] <= curValue) { isLow = false; } // Left
+  if (isLow && aRow > 0 && aHeightMap[aRow - 1][aCol] <= curValue) { isLow = false; } // Up
+  if (isLow && aCol < width - 1 && aHeightMap[aRow][aCol + 1] <= curValue) { isLow = false; } // Right
+  if (isLow && aRow < height - 1 && aHeightMap[aRow + 1][aCol] <= curValue) { isLow = false; } // Down
+  return isLow;
+}
+
 std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap)
 {
   std::vector<uint8_t> lowPoints;
@@ -26,16 +39,7 @@ std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap)
   for (size_t i = 0; i < height; i++) {
     for (size_t j = 0; j < width; j++) {
       // Check if any direction has a lower value
-      uint8_t curValue = aHeightMap[i][j];
-      bool isLow = true;
-      if (j > 0 && aHeightMap[i][j - 1] <= curValue) { isLow = false;  } // Left
-      if (isLow && i > 0 && aHeightMap[i - 1][j] <= curValue) { isLow = false; } // Up
-      if (isLow && j < width - 1 && aHeightMap[i][j + 1] <= curValue) { isLow = false; } // Right
-      if (isLow && i < height - 1 && aHeightMap[i + 1][j] <= curValue) { isLow = false; } // Down
-      if (isLow)
-      {
-        lowPoints.push_back(curValue);
-      }
+      if (isLowPoint(aHeightMap, i, j)) { lowPoints.push_back(aHeightMap[i][j]); }
     }
   }
   return lowPoints;
