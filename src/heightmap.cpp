@@ -18,7 +18,7 @@ HeightMap readHeightMap(std::istream &aFileStream)
   return heightMap;
 }
 
-std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
+std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap)
 {
   std::vector<uint8_t> lowPoints;
   size_t width = aHeightMap[0].size();
@@ -41,7 +41,7 @@ std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
   return lowPoints;
 }
 
-int computeRiskLevel(HeightMap aHeightMap)
+int computeRiskLevel(HeightMap &aHeightMap)
 {
   std::vector<uint8_t> lowPoints = computeLowPoints(aHeightMap);
   int riskLevel = 0;

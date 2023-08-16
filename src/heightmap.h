@@ -10,7 +10,7 @@ typedef std::vector<std::vector<uint8_t>> HeightMap;
 HeightMap readHeightMap(std::istream &aFileStream);
 
 /** Compute low points on a given heightmap */
-std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap);
+std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap);
 
 /** Compute the risk level of a given heightmap */
-int computeRiskLevel(HeightMap aHeightMap);
+int computeRiskLevel(HeightMap &aHeightMap);
