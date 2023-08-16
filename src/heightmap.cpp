@@ -55,3 +55,8 @@ int computeRiskLevel(HeightMap &aHeightMap)
   }
   return riskLevel;
 }
+
+std::vector<int> findBasins(HeightMap& aHeightMap)
+{
+  return std::vector<int>();
+}

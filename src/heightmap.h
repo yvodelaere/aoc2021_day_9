@@ -16,4 +16,7 @@ std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap);
 int computeRiskLevel(HeightMap &aHeightMap);
 
 /** Check if point is a low point */
-bool isLowPoint(HeightMap& aHeightMap, size_t aRow, size_t aCol);
+bool isLowPoint(HeightMap &aHeightMap, size_t aRow, size_t aCol);
+
+/** Find basins */
+std::vector<int> findBasins(HeightMap &aHeightMap);
