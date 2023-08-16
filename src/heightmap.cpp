@@ -21,10 +21,10 @@ HeightMap readHeightMap(std::istream &aFileStream)
 std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
 {
   std::vector<uint8_t> lowPoints;
-  int width = aHeightMap[0].size();
-  int height = aHeightMap.size();
-  for (int i = 0; i < height; i++) {
-    for (int j = 0; j < width; j++) {
+  size_t width = aHeightMap[0].size();
+  size_t height = aHeightMap.size();
+  for (size_t i = 0; i < height; i++) {
+    for (size_t j = 0; j < width; j++) {
       // Check if any direction has a lower value
       uint8_t curValue = aHeightMap[i][j];
       bool isLow = true;
