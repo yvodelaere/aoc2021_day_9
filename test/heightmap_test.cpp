@@ -74,6 +74,17 @@ bool findBasinsTest(HeightMap aHeightMap)
   return result;
 }
 
+bool basinSizeTest(HeightMap aHeightMap)
+{
+  bool result = true;
+  result &= calculateProductBasinSizes(aHeightMap) == 1134;
+  if (!result)
+  {
+    std::cout << "TEST: " << __FUNCTION__ << " failed" << std::endl;
+  }
+  return result;
+}
+
 int main(void) {
   std::stringstream sampleMapInput("2199943210\n3987894921\n9856789892\n8767896789\n9899965678\n");
   HeightMap heightMap = readHeightMap(sampleMapInput);
@@ -86,5 +97,6 @@ int main(void) {
   if (result) { result &= riskLevelTest(heightMap); }
   if (result) { result &= equalValueTest(); }
   if (result) { result &= findBasinsTest(heightMap); }
+  if (result) { result &= basinSizeTest(heightMap); }
   return !result;
 }
