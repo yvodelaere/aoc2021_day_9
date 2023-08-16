@@ -22,7 +22,7 @@ bool entryTest(HeightMap aHeightMap)
   result &= aHeightMap[4][9] == 8;
   if (!result)
   {
-    std::cout << "TEST:\t" << __FUNCTION__ << " failed" << std::endl;
+    std::cout << "TEST: " << __FUNCTION__ << " failed" << std::endl;
   }
   return result;
 }
@@ -34,7 +34,7 @@ bool lowPointsTest(HeightMap aHeightMap)
   result &= lowPoints.size() == 4;
   if (!result)
   {
-    std::cout << "TEST:\t" << __FUNCTION__ << " failed" << std::endl;
+    std::cout << "TEST: " << __FUNCTION__ << " failed" << std::endl;
   }
   return result;
 }
@@ -45,7 +45,7 @@ bool riskLevelTest(HeightMap aHeightMap)
   result &= computeRiskLevel(aHeightMap) == 15;
   if (!result)
   {
-    std::cout << "TEST:\t" << __FUNCTION__ << " failed" << std::endl;
+    std::cout << "TEST: " << __FUNCTION__ << " failed" << std::endl;
   }
   return result;
 }
