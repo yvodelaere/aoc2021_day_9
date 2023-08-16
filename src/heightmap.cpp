@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-HeightMap readHeightMap(std::ifstream &aFileStream)
+HeightMap readHeightMap(std::istream &aFileStream)
 {
     HeightMap heightMap{};
     std::string line;
