@@ -3,7 +3,7 @@
 #include "../src/heightmap.h"
 
 
-bool dimensionTest(HeightMap aHeightMap)
+bool dimensionTest(HeightMap& aHeightMap)
 {
   bool result = true;
   result &= aHeightMap.size() == 5;
@@ -15,7 +15,7 @@ bool dimensionTest(HeightMap aHeightMap)
   return result;
 }
 
-bool entryTest(HeightMap aHeightMap)
+bool entryTest(HeightMap& aHeightMap)
 {
   bool result = true;
   result &= aHeightMap[0][0] == 2;
@@ -27,7 +27,7 @@ bool entryTest(HeightMap aHeightMap)
   return result;
 }
 
-bool lowPointsTest(HeightMap aHeightMap)
+bool lowPointsTest(HeightMap& aHeightMap)
 {
   bool result = true;
   std::vector<uint8_t> lowPoints = computeLowPoints(aHeightMap);
@@ -39,7 +39,7 @@ bool lowPointsTest(HeightMap aHeightMap)
   return result;
 }
 
-bool riskLevelTest(HeightMap aHeightMap)
+bool riskLevelTest(HeightMap& aHeightMap)
 {
   bool result = true;
   result &= computeRiskLevel(aHeightMap) == 15;
@@ -63,7 +63,7 @@ bool equalValueTest()
   return result;
 }
 
-bool findBasinsTest(HeightMap aHeightMap)
+bool findBasinsTest(HeightMap& aHeightMap)
 {
   bool result = true;
   result &= findBasins(aHeightMap).size() == 4;
@@ -74,7 +74,7 @@ bool findBasinsTest(HeightMap aHeightMap)
   return result;
 }
 
-bool basinSizeTest(HeightMap aHeightMap)
+bool basinSizeTest(HeightMap& aHeightMap)
 {
   bool result = true;
   result &= calculateProductBasinSizes(aHeightMap) == 1134;
