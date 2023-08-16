@@ -1,6 +1,7 @@
 #include "heightmap.h"
 #include <string>
 #include <iostream>
+#include <string>
 
 HeightMap readHeightMap(std::istream &aFileStream)
 {
@@ -58,5 +59,43 @@ int computeRiskLevel(HeightMap &aHeightMap)
 
 std::vector<int> findBasins(HeightMap& aHeightMap)
 {
-  return std::vector<int>();
+  std::vector<int> basins;
+  size_t width = aHeightMap[0].size();
+  size_t height = aHeightMap.size();
+
+  std::vector<std::vector<int>> seenArray(height, std::vector<int>(width));
+  for (int i = 0; i < static_cast<int>(height); i++) {
+    for (int j = 0; j < static_cast<int>(width); j++) {
+      if (isLowPoint(aHeightMap, i, j)) {
+        //We found a low point, now we need to find size of the basin its in
+        //Flood fill till we have nines all around
+        std::vector<std::vector<bool>> seenArray(height, std::vector<bool>(width));
+        int totalCount = 0;
+        floodFillPoint(aHeightMap, seenArray, totalCount, i, j);
+        basins.push_back(totalCount);
+      }
+    }
+  }
+  return basins;
+}
+
+
+void floodFillPoint(HeightMap& aHeightMap, std::vector<std::vector<bool>> &aSeenArray, int& aTotalCount, int aRow, int aCol)
+{
+  //Check if the queried point is within bounds
+  if (aRow < aHeightMap.size() && aRow >= 0 && aCol < aHeightMap[aRow].size() && aCol >= 0)
+  {
+    if (!aSeenArray[aRow][aCol]) // We have not yet seen this value
+    {
+      aSeenArray[aRow][aCol] = true;
+      if (aHeightMap[aRow][aCol] != 9) // Its not a 9 so we can check its neighbours
+      {
+        aTotalCount += 1;
+        floodFillPoint(aHeightMap, aSeenArray, aTotalCount, aRow - 1, aCol);
+        floodFillPoint(aHeightMap, aSeenArray, aTotalCount, aRow, aCol + 1);
+        floodFillPoint(aHeightMap, aSeenArray, aTotalCount, aRow + 1, aCol);
+        floodFillPoint(aHeightMap, aSeenArray, aTotalCount, aRow, aCol - 1);
+      }
+    }
+  }
 }

@@ -20,3 +20,6 @@ bool isLowPoint(HeightMap &aHeightMap, size_t aRow, size_t aCol);
 
 /** Find basins */
 std::vector<int> findBasins(HeightMap &aHeightMap);
+
+/** Flood fill around the point */
+void floodFillPoint(HeightMap& aHeightMap, std::vector<std::vector<bool>>& aSeenArray, int& aTotalCount, int aRow, int aCol);
