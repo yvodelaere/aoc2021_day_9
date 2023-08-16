@@ -17,3 +17,9 @@ HeightMap readHeightMap(std::istream &aFileStream)
   }
   return heightMap;
 }
+
+std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
+{
+  std::vector<uint8_t> lowPoints;
+  return lowPoints;
+}
