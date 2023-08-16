@@ -5,7 +5,7 @@ Implemented code for day 9 of the AoC challenge in 2021. This was part of the co
 Inside the root folder of the repo run:
 
 cmake -S . -B build\
-cmake --build build\
+cmake --build build
 
 ## Run the unittest
 cd build && ctest -C Debug
