@@ -18,8 +18,12 @@ int main(int argc, char *argv[])
   if (input.is_open())
   {
     HeightMap heightMap = readHeightMap(input);
+    // Part 1
     int riskLevel = computeRiskLevel(heightMap);
-    std::cout << "Risk level for input map is " << riskLevel << std::endl;
+    std::cout << "Part 1, Risk level for input map is " << riskLevel << std::endl;
+    // Part 2
+    int productOfThreeBasins = calculateProductBasinSizes(heightMap);
+    std::cout << "Part 2, Product of basin sizes is " << productOfThreeBasins << std::endl;
     input.close();
   }
   else
