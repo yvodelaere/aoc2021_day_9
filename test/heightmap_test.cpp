@@ -39,6 +39,17 @@ bool lowPointsTest(HeightMap aHeightMap)
   return result;
 }
 
+bool riskLevelTest(HeightMap aHeightMap)
+{
+  bool result = true;
+  result &= computeRiskLevel(aHeightMap) == 15;
+  if (!result)
+  {
+    std::cout << "TEST:\t" << __FUNCTION__ << " failed" << std::endl;
+  }
+  return result;
+}
+
 int main(void) {
   std::stringstream sampleMapInput("2199943210\n3987894921\n9856789892\n8767896789\n9899965678\n");
   HeightMap heightMap = readHeightMap(sampleMapInput);
@@ -48,5 +59,6 @@ int main(void) {
   result &= dimensionTest(heightMap);
   if (result) { result &= entryTest(heightMap); }
   if (result) { result &= lowPointsTest(heightMap); }
+  if (result) { result &= riskLevelTest(heightMap); }
   return !result;
 }

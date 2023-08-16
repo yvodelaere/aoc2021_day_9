@@ -40,3 +40,14 @@ std::vector<uint8_t> computeLowPoints(HeightMap aHeightMap)
   }
   return lowPoints;
 }
+
+int computeRiskLevel(HeightMap aHeightMap)
+{
+  std::vector<uint8_t> lowPoints = computeLowPoints(aHeightMap);
+  int riskLevel = 0;
+  for (auto val : lowPoints)
+  {
+    riskLevel += (val + 1);
+  }
+  return riskLevel;
+}
