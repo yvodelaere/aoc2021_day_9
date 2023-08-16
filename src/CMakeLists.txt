@@ -5,6 +5,15 @@ target_sources(
   PRIVATE
     main.cpp
   )
+
+add_library(
+  heightmap
+  SHARED
+    heightmap.cpp
+    heightmap.h
+)
+
+target_link_libraries(aoc_day_9 PRIVATE heightmap)
   
 install(
   TARGETS aoc_day_9
