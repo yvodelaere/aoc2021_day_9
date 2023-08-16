@@ -2,15 +2,16 @@
 #include <string>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
-HeightMap readHeightMap(std::istream &aFileStream)
+HeightMap readHeightMap(std::istream& aFileStream)
 {
   HeightMap heightMap{};
   std::string line;
   while (std::getline(aFileStream, line))
   {
     std::vector<uint8_t> row;
-    for (char &c : line)
+    for (char& c : line)
     {
       row.push_back(static_cast<uint8_t>(c - '0'));
     }
@@ -32,7 +33,7 @@ bool isLowPoint(HeightMap& aHeightMap, size_t aRow, size_t aCol)
   return isLow;
 }
 
-std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap)
+std::vector<uint8_t> computeLowPoints(HeightMap& aHeightMap)
 {
   std::vector<uint8_t> lowPoints;
   size_t width = aHeightMap[0].size();
@@ -46,7 +47,7 @@ std::vector<uint8_t> computeLowPoints(HeightMap &aHeightMap)
   return lowPoints;
 }
 
-int computeRiskLevel(HeightMap &aHeightMap)
+int computeRiskLevel(HeightMap& aHeightMap)
 {
   std::vector<uint8_t> lowPoints = computeLowPoints(aHeightMap);
   int riskLevel = 0;
@@ -62,7 +63,6 @@ std::vector<int> findBasins(HeightMap& aHeightMap)
   std::vector<int> basins;
   size_t width = aHeightMap[0].size();
   size_t height = aHeightMap.size();
-
   std::vector<std::vector<int>> seenArray(height, std::vector<int>(width));
   for (int i = 0; i < static_cast<int>(height); i++) {
     for (int j = 0; j < static_cast<int>(width); j++) {
@@ -79,8 +79,19 @@ std::vector<int> findBasins(HeightMap& aHeightMap)
   return basins;
 }
 
+int calculateProductBasinSizes(HeightMap& aHeightMap)
+{
+  std::vector<int> basinSizes = findBasins(aHeightMap);
+  std::sort(basinSizes.begin(), basinSizes.end());
+  int productSizes = 0;
+  if (basinSizes.size() >= 3)
+  {
+    productSizes = basinSizes[basinSizes.size() - 3] * basinSizes[basinSizes.size() - 2] * basinSizes[basinSizes.size() - 1];
+  }
+  return productSizes;
+}
 
-void floodFillPoint(HeightMap& aHeightMap, std::vector<std::vector<bool>> &aSeenArray, int& aTotalCount, int aRow, int aCol)
+void floodFillPoint(HeightMap& aHeightMap, std::vector<std::vector<bool>>& aSeenArray, int& aTotalCount, int aRow, int aCol)
 {
   //Check if the queried point is within bounds
   if (aRow < aHeightMap.size() && aRow >= 0 && aCol < aHeightMap[aRow].size() && aCol >= 0)

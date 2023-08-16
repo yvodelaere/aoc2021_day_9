@@ -23,3 +23,6 @@ std::vector<int> findBasins(HeightMap &aHeightMap);
 
 /** Flood fill around the point */
 void floodFillPoint(HeightMap& aHeightMap, std::vector<std::vector<bool>>& aSeenArray, int& aTotalCount, int aRow, int aCol);
+
+/** Calculate the product of the three biggest basins */
+int calculateProductBasinSizes(HeightMap &aHeightMap);
