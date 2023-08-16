@@ -4,17 +4,16 @@
 
 HeightMap readHeightMap(std::istream &aFileStream)
 {
-    HeightMap heightMap{};
-    std::string line;
-    while (std::getline(aFileStream, line))
+  HeightMap heightMap{};
+  std::string line;
+  while (std::getline(aFileStream, line))
+  {
+    std::vector<uint8_t> row;
+    for (char &c : line)
     {
-        std::vector<uint8_t> row;
-        for (char &c : line)
-        {
-            row.push_back(static_cast<uint8_t>(c));
-            std::cout << c << std::endl;
-        }
-        heightMap.push_back(row);
+      row.push_back(static_cast<uint8_t>(c - '0'));
     }
-    return heightMap;
+    heightMap.push_back(row);
+  }
+  return heightMap;
 }
