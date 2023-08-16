@@ -12,3 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add src
 add_subdirectory(src)
+
+# enable testing
+enable_testing()
+add_subdirectory(test)
